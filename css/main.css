@@ -300,3 +300,9 @@ ul.nav-child-list>li:nth-child(3) i {
 	margin: 0 auto;
 	background-color: #2c303a;
 }
+
+.rcanvas {
+	display: none;
+	width: 100px;
+	background-color: #fff;
+}

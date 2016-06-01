@@ -54,7 +54,18 @@ $(function() {
 		event.preventDefault();
 		$(".control-box").hide();
 		$(".draw-nav-box").show();
+		$("#myCanvas").fadeIn();
 		loaded();
+		var myCanvas = $('<canvas class="rcanvas" id="myCanvas"></canvas>') 
+		myCanvas.css({
+			width: $(".main-box").width()-32,
+			height: 600,
+			margin: '26px auto',
+			background: '#fff',
+			boxShadow: '0px 0px 10px rbga(0,0,0,.5)'
+		});
+		myCanvas.appendTo('.main-box-in');
+		myCanvas.fadeIn('slow');
 	});
 
 	function loaded () {
