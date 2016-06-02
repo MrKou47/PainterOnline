@@ -4,18 +4,65 @@
 	<meta charset="UTF-8">
 	<title>PainterOnline</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css">
+	<style>
+	.scale_panel {
+	    color: #999;
+	    width: 100px;
+	    line-height: 18px;
+	    margin: 0 auto;
+	}
+	.scale_panel .r {
+	    float: right;
+	}
+	.scale span {
+	    background: url(img/scroll.gif) no-repeat;
+	    width: 16px;
+	    height: 16px;
+	    position: absolute;
+	    left: -2px;
+	    top: -5px;
+	    cursor: pointer;
+	    border-radius: 50%;
+	    background: #fff;
+	    box-shadow: 0px 0px 10px rgba(255,255,255,.3);
+	}
+	.scale {
+	    background-repeat: repeat-x;
+	    background-position: 0 100%;
+	    background-color: #242830;
+	    border-left: 1px #83BBD9 solid;
+	    width: 100px;
+	    height: 3px;
+	    position: relative;
+	    font-size: 0px;
+	    border-radius: 1.5px;
+	}
+	.scale div {
+	    background-repeat: repeat-x;
+	    background-color: #3BE3FF;
+	    width: 0px;
+	    position: absolute;
+	    height: 3px;
+	    width: 0;
+	    left: 0;
+	    bottom: 0;
+	}
+	</style>
+
 </head>
 <body>
+	<!-- 侧边栏 -->
 	<div class="sidebar">
 		<div class="scroll-box" id="scrollWrapper">
 			<div class="scroll-box-in">
 				<!-- 主页导航 -->
 				<div class="control-box">
 					<ul class="nav">
-						<li>
+						<li class="nav-on">
 							<h2><i>&#xe600;</i>Home Page</h2>
 						</li>
-						<li class="nav-on">
+						<li class="">
 							<h2><i>&#xe602;</i>Community</h2>
 							<ul class="nav-child-list">
 								<li><i></i>Friends</li>
@@ -29,22 +76,24 @@
 					</ul>
 					<div class="draw-btn" id="drawBtn">Draw now</div>
 				</div>
+				<!-- 绘画工具导航 -->
 				<div class="draw-nav-box" id="drawNavBox">
-					<!-- 绘画工具导航 -->
 					<div class="tools-box d-btn-box">
 						<h3>TOOLS</h3>
 						<div class="tools-pencil tool-box tool-on">
 							<h2><i>&#xe604;</i>Pencil</h2>
 							<div class="pencil-settings tool-setting">
+								<!-- 设置大小 -->
 								<div class="settings-size">
 									<h3><i></i>Size</h3>
-									<div class="progress">
-										<div class="progress-line">
+									<div class="scale_panel">
+										<div class="scale" id="bar">
 											<div></div>
-											<span class="pro-circle"></span>
+											<span id="btn"></span>
 										</div>
 									</div>
 								</div>
+								<!-- 设置背景 -->
 								<div class="settings-bg">
 									<h3><i></i>Style</h3>
 									<div class="bg-selector clearfix">
@@ -101,6 +150,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- 顶部 -->
 	<div class="header clearfix">
 		<div class="logo"><a href="/"><img src="img/logo.png" alt=""></a></div>
 		<div class="sl-box clearfix">
@@ -112,14 +162,42 @@
 			</div>
 		</div>
 	</div>
+	<!-- 右侧界面 -->
 	<div class="main-box">
 		<div class="main-box-in">
-			
+			<div class="home-page">
+				<!-- 轮播图 -->
+				<div class="swiper-container">
+				    <div class="swiper-wrapper">
+				        <div class="swiper-slide"><img src="img/swiper_1.jpg" alt=""></div>
+				        <div class="swiper-slide"><img src="img/swiper_1.jpg" alt=""></div>
+				        <div class="swiper-slide"><img src="img/swiper_1.jpg" alt=""></div>
+				    </div>
+				    <!-- 如果需要分页器 -->
+				    <div class="swiper-pagination"></div>
+				</div>
+				<h1 class="home-title">什么是EvolutionX?</h1>
+				<p class="home-article">
+					 EvolutionX一款基于HTML5的在线绘图应用。利用EvolutionX，你可以实现自己的奇思妙想，并通过社区推送给所有人！
+				</p>
+				<h1 class="home-title">使用EvolutionX</h1>
+				<p class="home-article">
+					 EvolutionX一款基于HTML5的在线绘图应用。利用EvolutionX，你可以实现自己的奇思妙想，并通过社区推送给所有人！
+				</p>
+				<h1 class="home-title">使用EvolutionX</h1>
+				<p class="home-article">
+					 EvolutionX一款基于HTML5的在线绘图应用。利用EvolutionX，你可以实现自己的奇思妙想，并通过社区推送给所有人！
+				</p>
+			</div>
+			<div class="community">
+				
+			</div>
 		</div>
-		<!-- <canvas class="rcanvas" id="myCanvas" height="200"></canvas> -->
 	</div>
 	<script src="js/jquery-1.12.1.js"></script>
+	<script src="js/swiper-3.3.1.min.js"></script>
 	<script src="js/iscroll.js"></script>
+	<script src="js/scale.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/drawControl.js"></script>
 </body>

@@ -11,7 +11,10 @@ $(function() {
 		$(".main-box").css({
 			'width': bodyWid-sWid,
 			'paddingLeft': sWid,
-			'paddingTop': hHei
+			'marginTop': hHei
+		});
+		$(".main-box-in").css({
+			height: $(window).height()-hHei-20
 		});
 		return $(".main-box").width();
 	}
@@ -50,22 +53,34 @@ $(function() {
 		event.preventDefault();
 	});
 
+
+	// 点击按钮开始 绘画
 	$("#drawBtn").on('click', function(event) {
 		event.preventDefault();
 		$(".control-box").hide();
 		$(".draw-nav-box").show();
 		$("#myCanvas").fadeIn();
 		loaded();
+		// 生成canvas标签
+		var canCon = $('<div class="canvas-container"></div>');
 		var myCanvas = $('<canvas class="rcanvas" id="myCanvas"></canvas>') 
+		canCon.css({
+			width: $(".main-box").width()-32,
+			height: 1600,
+			margin: '0 10px',
+			background: '#fff'
+		});
 		myCanvas.css({
 			width: $(".main-box").width()-32,
-			height: 600,
-			margin: '26px auto',
-			background: '#fff',
-			boxShadow: '0px 0px 10px rbga(0,0,0,.5)'
+			height: 1600,
 		});
-		myCanvas.appendTo('.main-box-in');
-		myCanvas.fadeIn('slow');
+		canCon.appendTo('.main-box-in');
+		myCanvas.appendTo('.canvas-container');
+		canCon.fadeIn('slow');
+		$('.main-box-in').css('overflow-y', 'scroll');
+		setTimeout(function () {
+			$($('.tool-box')[0]).find('.tool-setting').slideDown();
+		}, 500);
 	});
 
 	function loaded () {
@@ -80,4 +95,13 @@ $(function() {
 		e.preventDefault();
 	}, false);
 
+	// 初始化swiper 
+	var mySwiper = new Swiper ('.swiper-container', {
+	  direction: 'horizontal',
+	  loop: true,
+	  // 如果需要分页器
+	  pagination: '.swiper-pagination',
+	})
+
+	new scale('btn','bar','title');
 });
