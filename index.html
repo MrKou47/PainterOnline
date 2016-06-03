@@ -4,84 +4,84 @@
 	<meta charset="UTF-8">
 	<title>PainterOnline</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css">
 	<style>
-	.scale_panel {
-	    color: #999;
-	    width: 100px;
-	    line-height: 18px;
-	    margin: 0 auto;
-	}
-	.scale_panel .r {
-	    float: right;
-	}
-	.scale span {
-	    background: url(img/scroll.gif) no-repeat;
-	    width: 16px;
-	    height: 16px;
-	    position: absolute;
-	    left: -2px;
-	    top: -5px;
-	    cursor: pointer;
-	    border-radius: 50%;
-	    background: #fff;
-	    box-shadow: 0px 0px 10px rgba(255,255,255,.3);
-	}
-	.scale {
-	    background-repeat: repeat-x;
-	    background-position: 0 100%;
-	    background-color: #242830;
-	    border-left: 1px #83BBD9 solid;
-	    width: 100px;
-	    height: 3px;
-	    position: relative;
-	    font-size: 0px;
-	    border-radius: 1.5px;
-	}
-	.scale div {
-	    background-repeat: repeat-x;
-	    background-color: #3BE3FF;
-	    width: 0px;
-	    position: absolute;
-	    height: 3px;
-	    width: 0;
-	    left: 0;
-	    bottom: 0;
-	}
+		.scale_panel {
+		    color: #999;
+		    width: 100px;
+		    line-height: 18px;
+		    margin: 0 auto;
+		}
+		.scale_panel .r {
+		    float: right;
+		}
+		.scale span {
+		    background: url(img/scroll.gif) no-repeat;
+		    width: 16px;
+		    height: 16px;
+		    position: absolute;
+		    left: -2px;
+		    top: -5px;
+		    cursor: pointer;
+		    border-radius: 50%;
+		    background: #fff;
+		    box-shadow: 0px 0px 10px rgba(255,255,255,.3);
+		}
+		.scale {
+		    background-repeat: repeat-x;
+		    background-position: 0 100%;
+		    background-color: #242830;
+		    border-left: 1px #83BBD9 solid;
+		    width: 100px;
+		    height: 3px;
+		    position: relative;
+		    font-size: 0px;
+		    border-radius: 1.5px;
+		}
+		.scale div {
+		    background-repeat: repeat-x;
+		    background-color: #3BE3FF;
+		    width: 0px;
+		    position: absolute;
+		    height: 3px;
+		    width: 0;
+		    left: 0;
+		    bottom: 0;
+		}
 	</style>
-
 </head>
 <body>
 	<!-- 侧边栏 -->
-	<div class="sidebar">
+	<div class="sidebar animated fadeInLeft">
 		<div class="scroll-box" id="scrollWrapper">
 			<div class="scroll-box-in">
 				<!-- 主页导航 -->
 				<div class="control-box">
 					<ul class="nav">
 						<li class="nav-on">
-							<h2><i>&#xe600;</i>Home Page</h2>
+							<h2 class="hvr-bounce-to-right"><a href="/homepage"><i>&#xe600;</i>Home Page</a></h2>
 						</li>
 						<li class="">
-							<h2><i>&#xe602;</i>Community</h2>
+							<h2 class="hvr-bounce-to-right"><i>&#xe602;</i>Community</h2>
 							<ul class="nav-child-list">
-								<li><i></i>Friends</li>
-								<li><i></i>Most Popular</li>
-								<li><i></i>New Work</li>
+								<li class="hvr-bounce-to-right1"><i></i>Friends</li>
+								<li class="hvr-bounce-to-right1"><i></i>Most Popular</li>
+								<li class="hvr-bounce-to-right1"><i></i>New Work</li>
 							</ul>
 						</li>
 						<li>
-							<h2><i>&#xe609;</i>Personal Center</h2>
+							<h2 class="hvr-bounce-to-right"><i>&#xe609;</i>Personal Center</h2>
 						</li>
 					</ul>
-					<div class="draw-btn" id="drawBtn">Draw now</div>
+					<div class="draw-btn hvr-grow-shadow" id="drawBtn">Draw now</div>
 				</div>
 				<!-- 绘画工具导航 -->
 				<div class="draw-nav-box" id="drawNavBox">
 					<div class="tools-box d-btn-box">
 						<h3>TOOLS</h3>
 						<div class="tools-pencil tool-box tool-on">
-							<h2><i>&#xe604;</i>Pencil</h2>
+							<h2 class="hvr-bounce-to-right"><i>&#xe604;</i>Pencil</h2>
 							<div class="pencil-settings tool-setting">
 								<!-- 设置大小 -->
 								<div class="settings-size">
@@ -107,31 +107,54 @@
 							</div>
 						</div>
 						<div class="tools-brush tool-box">
-							<h2><i>&#xe60a;</i>Brush</h2>
+							<h2 class="hvr-bounce-to-right"><i>&#xe60a;</i>Brush</h2>
 							<div class="brush-settings tool-setting">
-								<h3><i></i>Size</h3>
+								<!-- 设置大小 -->
+								<div class="settings-size">
+									<h3><i></i>Size</h3>
+									<div class="scale_panel">
+										<div class="scale" id="bar2">
+											<div></div>
+											<span id="btn2"></span>
+										</div>
+									</div>
+								</div>
+								<!-- 设置背景 -->
+								<div class="settings-bg">
+									<h3><i></i>Style</h3>
+									<div class="bg-selector clearfix">
+										<span id="bg-scroll-box"></span>
+										<div><img src="img/brush_1.png" alt=""></div>
+										<div><img src="img/brush_2.png" alt=""></div>
+										<div><img src="img/brush_3.png" alt=""></div>
+										<div><img src="img/brush_4.png" alt=""></div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="tools-eraser tool-box">
-							<h2><i>&#xe606;</i>Eraser</h2>
+							<h2 class="hvr-bounce-to-right"><i>&#xe606;</i>Eraser</h2>
 							<div class="eraser-settings tool-setting">
-								<h3><i></i>Size</h3>
+								<!-- 设置大小 -->
+								<div class="settings-size">
+									<h3><i></i>Size</h3>
+									<div class="scale_panel">
+										<div class="scale" id="bar3">
+											<div></div>
+											<span id="btn3"></span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="tools-square tool-box">
-							<h2><i>&#xe601;</i>Square</h2>
-							<div class="square-settings tool-setting">
-								<h3><i></i>Size</h3>
-							</div>
+							<h2 class="hvr-bounce-to-right"><i>&#xe601;</i>Square</h2>
 						</div>
 						<div class="tools-circle tool-box">
-							<h2><i>&#xe608;</i>Circle</h2>
-							<div class="circle-settings tool-setting">
-								<h3><i></i>Size</h3>
-							</div>
+							<h2 class="hvr-bounce-to-right"><i>&#xe608;</i>Circle</h2>
 						</div>
 						<div class="tools-text tool-box">
-							<h2><i>&#xe60b;</i>text</h2>
+							<h2 class="hvr-bounce-to-right"><i>&#xe60b;</i>text</h2>
 							<div class="text-settings tool-setting">
 								<h3><i></i>Size</h3>
 							</div>
@@ -152,7 +175,7 @@
 	</div>
 	<!-- 顶部 -->
 	<div class="header clearfix">
-		<div class="logo"><a href="/"><img src="img/logo.png" alt=""></a></div>
+		<div class="logo"><a href="#" class="hvr-bob"><img src="img/logo.png" alt=""></a></div>
 		<div class="sl-box clearfix">
 			<div class="sign-in sign-box">
 				<i class="sign-in-i"></i>Sign in
@@ -165,7 +188,7 @@
 	<!-- 右侧界面 -->
 	<div class="main-box">
 		<div class="main-box-in">
-			<div class="home-page">
+			<div class="home-page animated fadeInUp">
 				<!-- 轮播图 -->
 				<div class="swiper-container">
 				    <div class="swiper-wrapper">
