@@ -15,6 +15,7 @@ scale.prototype={
 			var x=(e||b.event).clientX;
 			var l=this.offsetLeft;
 			var max=f.bar.offsetWidth-this.offsetWidth;
+			t = $(this);
 			g.onmousemove=function (e){
 				var thisX=(e||b.event).clientX;
 				var to=m.min(max,m.max(-2,l+(thisX-x)));
@@ -22,7 +23,15 @@ scale.prototype={
 				f.ondrag(m.round(m.max(0,to/max)*100),to);
 				b.getSelection ? b.getSelection().removeAllRanges() : g.selection.empty();
 			};
-			g.onmouseup=new Function('this.onmousemove=null');
+			// g.onmouseup=new Function('this.onmousemove=null');
+			g.onmouseup = function () {
+				this.onmousemove=null;
+				console.log(t);
+
+				var s = t.css('left').split('px')[0]>1?t.css('left').split('px')[0]:1;
+				// t.data('size', s);
+				t.attr('data-size' ,s);
+			}
 		};
 	},
 	ondrag:function (pos,x){

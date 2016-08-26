@@ -1,4 +1,3 @@
-var myScroll;
 $(function() {
 	/**
 	 * [setMainBoxWidth description]：修改main的宽度
@@ -26,9 +25,8 @@ $(function() {
 
 	// 主要侧边栏绑定事件
 	$(".nav>li").on('click', function(event) {
-		event.preventDefault();
 		// event.stopPropagation();
-		console.log(event.target)
+		console.log(event.target);
 		$(this).siblings()
 				.removeClass('nav-on')
 				.children('ul')
@@ -41,7 +39,7 @@ $(function() {
 	$(".nav-child-list>li").on('click', function(event) {
 		event.stopPropagation();
 		var iColor = $(this).children('i').css('background-color');
-		var tShadow = '0px 0px 10px '+iColor;
+		var tShadow = '0px 0px 10px ' + iColor;
 		$(this).siblings('li')
 				.removeClass('child-list-on')
 				.children('i')
@@ -51,7 +49,6 @@ $(function() {
 				.css({
 					'boxShadow': tShadow
 				});
-		event.preventDefault();
 	});
 
 	setTimeout(function () {
@@ -59,41 +56,18 @@ $(function() {
 	},1000)
 	// 点击按钮开始 绘画
 	$("#drawBtn").on('click', function(event) {
-		event.preventDefault();
+		// event.preventDefault();
 		$(".control-box").hide();
 		$(".draw-nav-box").show();
 		$("#myCanvas").fadeIn();
 		loaded();
 		// 生成canvas标签
-		var canCon = $('<div class="canvas-container"></div>');
-		var myCanvas = $('<canvas class="rcanvas" id="myCanvas"></canvas>') 
-		canCon.css({
-			width: $(".main-box").width()-32,
-			height: 1600,
-			margin: '0 10px',
-			background: '#fff'
-		});
-		myCanvas.css({
-			width: $(".main-box").width()-32,
-			height: 1600,
-		});
-		canCon.appendTo('.main-box-in');
-		myCanvas.appendTo('.canvas-container');
-		canCon.fadeIn('slow');
-		$('.main-box-in').css('overflow-y', 'scroll');
 		setTimeout(function () {
 			$($('.tool-box')[0]).find('.tool-setting').slideDown();
 		}, 500);
 	});
 
-	function loaded () {
-		myScroll = new IScroll('#scrollWrapper', {
-			scrollbars: true,
-			mouseWheel: true,
-			interactiveScrollbars: true,
-			fadeScrollbars: true
-		});
-	}
+
 	document.addEventListener('touchmove', function (e) {
 		e.preventDefault();
 	}, false);
@@ -111,4 +85,7 @@ $(function() {
 	new scale('btn','bar','title');
 	new scale('btn2','bar2');
 	new scale('btn3','bar3');
+	new scale('btn4','bar4');
+	new scale('btn5','bar5');
+	new scale('btn6','bar6');
 });

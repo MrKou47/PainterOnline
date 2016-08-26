@@ -1,14 +1,14 @@
 @font-face {
 	font-family: mainfont;
-	src:url(../font/MavenPro-Regular.ttf);
+	src:url(/statics/font/MavenPro-Regular.ttf);
 }
 @font-face {
 	font-family: ifont;
-	src:url(../font/iconfont.ttf);
+	src:url(/statics/font/iconfont.ttf);
 }
 @font-face {
 	font-family: liheifont;
-	src:url(../font/LiheiPro.ttf);
+	src:url(/statics/font/LiheiPro.ttf);
 }
 body,html {
 	height: 100%;
@@ -160,7 +160,9 @@ ul.nav-child-list>li:nth-child(3) i {
 }
 
 .logo {
-	float: left;
+	width: 155px;
+	margin: 0 auto;
+	/*float: left;*/
 	height: 100%;
 }
 .logo a {
@@ -174,6 +176,7 @@ ul.nav-child-list>li:nth-child(3) i {
 }
 /* loginbox */
 .sl-box {
+	display: none;
 	float: right;
 	height: 100%;
 	padding-right: .36rem;
@@ -294,7 +297,7 @@ ul.nav-child-list>li:nth-child(3) i {
 	top: 10px;
 	width: .26rem;
 	height: .38rem;
-	background: url(../img/select-on.png) 0 0 no-repeat;
+	background: url(../images/select-on.png) 0 0 no-repeat;
 	transition: all .2s;
 }
 .bg-selector>div {
@@ -304,6 +307,17 @@ ul.nav-child-list>li:nth-child(3) i {
 	text-align: center;
 }
 .edit-list>div {
+	display: block;
+	text-decoration: none;
+	height: .5rem;
+    font-size: .16rem;
+    line-height: .5rem;
+    padding-left: .2rem;
+    color: #b0b1b5;
+}
+a.save {
+	display: block;
+	text-decoration: none;
 	height: .5rem;
     font-size: .16rem;
     line-height: .5rem;
@@ -318,6 +332,7 @@ ul.nav-child-list>li:nth-child(3) i {
 }
 
 .canvas-container {
+	position: relative;
 	display: none;
 	background-color: #fff;
 	-webkit-box-shadow: 0px 0px 35px rgba(0,0,0,.2);
@@ -381,6 +396,9 @@ p.home-article {
 	padding-bottom: .25rem;
 }
 
+.color-content,.brush-style:hover {
+	box-shadow: 0px 1px 10px rgba(255,255,255,.3); 
+}
 
 /* Bounce To Right */
 .hvr-bounce-to-right {

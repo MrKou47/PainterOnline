@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PainterOnline</title>
+	<link rel="stylesheet" type="text/css" href="statics/css/main.css">
+	<link rel="stylesheet" href="statics/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="statics/css/swiper-3.3.1.min.css">
+	<style>
+		.scale_panel {
+		    color: #999;
+		    width: 100px;
+		    line-height: 18px;
+		    margin: 0 auto;
+		}
+		.scale_panel .r {
+		    float: right;
+		}
+		.scale span {
+		    background: url(img/scroll.gif) no-repeat;
+		    width: 16px;
+		    height: 16px;
+		    position: absolute;
+		    left: -2px;
+		    top: -5px;
+		    cursor: pointer;
+		    border-radius: 50%;
+		    background: #fff;
+		    box-shadow: 0px 0px 10px rgba(255,255,255,.3);
+		}
+		.scale {
+		    background-repeat: repeat-x;
+		    background-position: 0 100%;
+		    background-color: #242830;
+		    border-left: 1px #83BBD9 solid;
+		    width: 100px;
+		    height: 3px;
+		    position: relative;
+		    font-size: 0px;
+		    border-radius: 1.5px;
+		}
+		.scale div {
+		    background-repeat: repeat-x;
+		    background-color: #3BE3FF;
+		    width: 0px;
+		    position: absolute;
+		    height: 3px;
+		    width: 0;
+		    left: 0;
+		    bottom: 0;
+		}
+	</style>
+</head>
+<body>
+	<!-- 侧边栏 -->
+	<div class="sidebar animated fadeInLeft">
+		<div class="scroll-box" id="scrollWrapper">
+			<div class="scroll-box-in">
+				<!-- 主页导航 -->
+				<div class="control-box">
+					<ul class="nav">
+						<li class="nav-on">
+							<h2 class="hvr-bounce-to-right"><a href="/homepage"><i>&#xe600;</i>Home Page</a></h2>
+						</li>
+						<li class="">
+							<h2 class="hvr-bounce-to-right"><a href="/community"><i>&#xe602;</i>Community</a></h2>
+							<ul class="nav-child-list">
+								<li class="hvr-bounce-to-right1"><a href="/community"><i></i>Friends</a></li>
+								<li class="hvr-bounce-to-right1"><i></i>Most Popular</li>
+								<li class="hvr-bounce-to-right1"><i></i>New Work</li>
+							</ul>
+						</li>
+						<li>
+							<h2 class="hvr-bounce-to-right"><i>&#xe609;</i>Personal Center</h2>
+						</li>
+					</ul>
+					<a class="draw-btn hvr-grow-shadow" id="drawBtn" href="/painting">Draw now</a>
+				</div>
+				<!-- 绘画工具导航 -->
+
+			</div>
+		</div>
+	</div>
+	<!-- 顶部 -->
+	<div class="header clearfix">
+		<div class="logo"><a href="/" class="hvr-bob"><img src="statics/images/logo.png" alt="" width="115" height="44"></a></div>
+		<div class="sl-box clearfix">
+			<div class="sign-in sign-box">
+				<i class="sign-in-i"></i>Sign in
+			</div>
+			<div class="sign-up sign-box">
+				<i></i>Sign up
+			</div>
+		</div>
+	</div>
+	<!-- 右侧界面 -->
+	<div class="main-box">
+		<div class="main-box-in">
+			<div class="home-page animated fadeInUp">
+				<!-- 轮播图 -->
+				<div class="swiper-container">
+				    <div class="swiper-wrapper">
+				        <div class="swiper-slide"><img src="statics/images/swiper_1.jpg" alt=""></div>
+				        <div class="swiper-slide"><img src="statics/images/swiper_1.jpg" alt=""></div>
+				        <div class="swiper-slide"><img src="statics/images/swiper_1.jpg" alt=""></div>
+				    </div>
+				    <!-- 如果需要分页器 -->
+				    <div class="swiper-pagination"></div>
+				</div>
+				<h1 class="home-title">什么是EvolutionX?</h1>
+				<p class="home-article">
+					 EvolutionX一款基于HTML5的在线绘图应用。利用EvolutionX，你可以实现自己的奇思妙想，并通过社区推送给所有人！
+				</p>
+				<h1 class="home-title">使用EvolutionX</h1>
+				<p class="home-article">
+					1. 本应用由node构建 使用$ node app 启动程序<br>
+					2. 点击draw now按钮进入绘图界面<br>
+					3. 左侧为工具栏，可选择绘图工具，主要有铅笔，笔刷，等工具<br>
+					4. 点击delete可删除整个画布,点击save可保存绘画到桌面<br>
+				</p>
+				
+			</div>
+			<div class="community">
+				
+			</div>
+		</div>
+	</div>
+	<script src="statics/js/jquery-1.12.1.js"></script>
+	<script src="statics/js/swiper-3.3.1.min.js"></script>
+	<script src="statics/js/iscroll.js"></script>
+	<script src="statics/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PainterOnline</title>
+	<link rel="stylesheet" type="text/css" href="statics/css/main.css">
+	<link rel="stylesheet" href="statics/css/animate.css">
+	<link rel="stylesheet" href="/statics/css/spectrum.css">
+	<link rel="stylesheet" type="text/css" href="statics/css/swiper-3.3.1.min.css">
+	<style>
+		.scale_panel {
+		    color: #999;
+		    width: 100px;
+		    line-height: 18px;
+		    margin: 0 auto;
+		}
+		.scale_panel .r {
+		    float: right;
+		}
+		.scale a {
+		    background: url(img/scroll.gif) no-repeat;
+		    width: 16px;
+		    height: 16px;
+		    position: absolute;
+		    left: -2px;
+		    top: -5px;
+		    cursor: pointer;
+		    border-radius: 50%;
+		    background: #fff;
+		    box-shadow: 0px 0px 10px rgba(255,255,255,.3);
+		}
+		.scale {
+		    background-repeat: repeat-x;
+		    background-position: 0 100%;
+		    background-color: #242830;
+		    border-left: 1px #83BBD9 solid;
+		    width: 100px;
+		    height: 3px;
+		    position: relative;
+		    font-size: 0px;
+		    border-radius: 1.5px;
+		    margin-bottom: 20px;
+		}
+		.scale div {
+		    position: absolute;
+		    height: 3px;
+		    width: 10px;
+		    left: 0;
+		    bottom: 0;
+		    background-repeat: repeat-x;
+		    background-color: #3BE3FF;
+		}
+		.color-box {
+			width: 180px;
+			margin: 0 auto;
+		}
+		.color-box:after {
+			display: block;
+			content: '';
+			clear: both;
+			visibility: hidden;
+		}
+		.color-box>a {
+			display: block;
+			float: left;
+			width: 60px;
+			height: 30px;
+			background-color: #ff0;
+			text-decoration: none;
+		}
+		.color-box>a.color-blue {
+			background-color: #6473b6;
+		}
+		.color-box>a.color-orange {
+			background-color: #fd5105;
+		}
+		.color-box>a.color-green {
+			background-color: #49a34b;
+		}
+		.color-box>a.color-yellow {
+			background-color: #ffcd1e;
+		}
+		.color-box>a.color-white {
+			background-color: #fff;
+		}
+		.color-box>a.color-black {
+			background-color: #000;
+		}
+		#imageTemp {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		#btn,#btn2,#btn3 {
+			left: 10px;
+		}
+		.rcanvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.rcanvas:active {
+			cursor: default;
+		}
+		#myCanvas {
+		}
+		#myCanvas2 {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<!-- 侧边栏 -->
+	<div class="sidebar animated fadeInLeft">
+		<div class="scroll-box" id="scrollWrapper">
+			<div class="scroll-box-in">
+				<!-- 主页导航 -->
+				<!-- 绘画工具导航 -->
+				<div class="draw-nav-box" id="drawNavBox">
+					<div class="tools-box d-btn-box">
+						<div class="color-box" style="display:none;">
+							<a class="color-blue color-content" href="#myCanvas" data-color="#6473b6"></a>
+							<a class="color-orange color-content" href="#myCanvas" data-color="#fd5105"></a>
+							<a class="color-green color-content" href="#myCanvas" data-color="#49a34b"></a>
+							<a class="color-white color-content" href="#myCanvas" data-color="#fff"></a>
+							<a class="color-black color-content" href="#myCanvas" data-color="#000"></a>
+							<a class="color-yellow color-content" href="#myCanvas" data-color="#ffcd1e"></a>
+						</div>
+						<input id="colorpicker">
+						<h3>TOOLS</h3>
+						<div class="tools-pencil tool-box tool-on" id="pencil">
+							<h2 class="hvr-bounce-to-right"><i>&#xe604;</i>Pencil</h2>
+							<div class="pencil-settings tool-setting">
+								<!-- 设置大小 -->
+								<div class="settings-size">
+									<h3>
+										<i></i>
+										Size
+									</h3>
+									<div class="scale_panel">
+										<div class="scale" id="bar">
+											<div></div>
+											<a id="btn" data-size="10" href="#myCanvas"></a>
+										</div>
+									</div>
+								</div>
+								<!-- 设置背景 -->
+							</div>
+						</div>
+						<div id="brush" class="tools-brush tool-box">
+							<h2 class="hvr-bounce-to-right"><i>&#xe60a;</i>Brush</h2>
+							<div class="brush-settings tool-setting">
+								<!-- 设置大小 -->
+								<div class="settings-size">
+									<h3><i></i>Size</h3>
+									<div class="scale_panel">
+										<div class="scale" id="bar2">
+											<div></div>
+											<a id="btn2" data-size='10'></a>
+										</div>
+									</div>
+								</div>
+								<!-- 设置背景 -->
+								<div class="settings-bg">
+									<h3><i></i>Style</h3>
+									<div class="bg-selector clearfix">
+										<span id="bg-scroll-box"></span>
+										<div data-isimg="true"><img class="brush-style" src="/statics/images/brush_1.png" id="brush_1"></div>
+										<div><img class="brush-style" src="/statics/images/brush_2.png" id="brush_2"></div>
+										<div><img class="brush-style" src="/statics/images/brush_3.png" id="brush_3"></div>
+										<div><img class="brush-style" src="/statics/images/brush_4.png" id="brush_4"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="eraser" class="tools-eraser tool-box">
+							<h2 class="hvr-bounce-to-right" ><i>&#xe606;</i>Eraser</h2>
+							<div class="eraser-settings tool-setting">
+								<!-- 设置大小 -->
+								<div class="settings-size">
+									<h3><i></i>Size</h3>
+									<div class="scale_panel">
+										<div class="scale" id="bar3">
+											<div></div>
+											<a id="btn3" data-size='10'></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tools-square tool-box" id="square">
+							<h2 class="hvr-bounce-to-right"><i>&#xe601;</i>Square</h2>
+							<div class="eraser-settings tool-setting">
+								<!-- 设置大小 -->
+								<div class="settings-size">
+									<h3><i></i>Size</h3>
+									<div class="scale_panel">
+										<div class="scale" id="bar5">
+											<div></div>
+											<a id="btn5" data-size='10'></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+<!-- 						<div class="tools-bezier tool-box" id="bezier">
+							<h2 class="hvr-bounce-to-right"><i>&#xe601;</i>Bezier</h2>
+						</div> -->
+						<div id="circle" class="tools-circle tool-box">
+							<h2 class="hvr-bounce-to-right"><i>&#xe608;</i>Circle</h2>
+							<!-- 设置大小 -->
+							<div class="settings-size">
+								<h3><i></i>Size</h3>
+								<div class="scale_panel">
+									<div class="scale" id="bar6">
+										<div></div>
+										<a id="btn6" data-size='10'></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="text" class="tools-text tool-box">
+							<h2 class="hvr-bounce-to-right"><i>&#xe60b;</i>Line</h2>
+							<div class="text-settings tool-setting">
+								<h3><i></i>Size</h3>
+								<div class="scale_panel">
+									<div class="scale" id="bar4">
+										<div></div>
+										<a id="btn4" data-size='10'></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="s-line"></div>
+					<div class="edit-box d-btn-box">
+						<h3>EDITS</h3>
+						<div class="edit-list">
+							<!-- <div><i>&#xe607;</i>Revoked</div> -->
+							<div id="delete"><i>&#xe603;</i>Deleted</div>
+							<a class="save" id="save" download="YourFileName.jpg"><i>&#xe605;</i>Save</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 顶部 -->
+	<div class="header clearfix">
+		<div class="logo"><a href="/" class="hvr-bob"><img src="statics/images/logo.png" alt="" width="115" height="44"></a></div>
+		<div class="sl-box clearfix">
+			<div class="sign-in sign-box">
+				<i class="sign-in-i"></i>Sign in
+			</div>
+			<div class="sign-up sign-box">
+				<i></i>Sign up
+			</div>
+		</div>
+	</div>
+	<!-- 右侧界面 -->
+	<div class="main-box">
+		<div class="main-box-in">
+
+		</div>
+	</div>
+	<script src="statics/js/jquery-1.12.1.js"></script>
+	<script src="/statics/js/spectrum.js"></script>
+	<script src="statics/js/swiper-3.3.1.min.js"></script>
+	<script src="statics/js/iscroll.js"></script>
+	<script src="statics/js/scale.js"></script>
+	<script src="statics/js/main.js"></script>
+	<script src="statics/js/drawControl.js"></script>
+	<script>
+		$(function() {
+
+		});
+	</script>
+	<!-- <script src="statics/js/draw.js"></script> -->
+	<!-- <script src="statics/js/sketch.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PainterOnline</title>
+	<link rel="stylesheet" type="text/css" href="statics/css/main.css">
+	<link rel="stylesheet" href="statics/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="statics/css/swiper-3.3.1.min.css">
+	<style>
+		.scale_panel {
+		    color: #999;
+		    width: 100px;
+		    line-height: 18px;
+		    margin: 0 auto;
+		}
+		.scale_panel .r {
+		    float: right;
+		}
+		.scale span {
+		    background: url(img/scroll.gif) no-repeat;
+		    width: 16px;
+		    height: 16px;
+		    position: absolute;
+		    left: -2px;
+		    top: -5px;
+		    cursor: pointer;
+		    border-radius: 50%;
+		    background: #fff;
+		    box-shadow: 0px 0px 10px rgba(255,255,255,.3);
+		}
+		.scale {
+		    background-repeat: repeat-x;
+		    background-position: 0 100%;
+		    background-color: #242830;
+		    border-left: 1px #83BBD9 solid;
+		    width: 100px;
+		    height: 3px;
+		    position: relative;
+		    font-size: 0px;
+		    border-radius: 1.5px;
+		}
+		.scale div {
+		    background-repeat: repeat-x;
+		    background-color: #3BE3FF;
+		    width: 0px;
+		    position: absolute;
+		    height: 3px;
+		    width: 0;
+		    left: 0;
+		    bottom: 0;
+		}
+		.article-box {
+			width: 250px;
+			height: 180px;
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+			-webkit-flex-direction: column;
+			-moz-flex-direction: column;
+			-ms-flex-direction: column;
+			-o-flex-direction: column;
+			flex-direction: column;
+			-ms-align-items: center;
+			align-items: center;
+			margin-bottom: 8px;
+		}
+		.art-con {
+			float: left;
+			margin-left: 15px;
+			margin-bottom: 20px;
+		}
+		.community {
+			padding: 20px;
+		}
+		.community:after {
+			content: ' ';
+			display: block;
+			width: 0;
+			clear: both;
+			visibility: hidden;
+		}
+		.article-box img {
+			width: 100%;
+			height: 180px;
+		}
+		.art-con p {
+			font-size: 14px;
+			text-align: center;
+		}
+		.com-title {
+			font-size: 14px;
+			color: #ddd;
+			padding: 0 10px 10px 10px;
+			border-bottom: 1px solid #ddd;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<!-- 侧边栏 -->
+	<div class="sidebar animated fadeInLeft">
+		<div class="scroll-box" id="scrollWrapper">
+			<div class="scroll-box-in">
+				<!-- 主页导航 -->
+				<div class="control-box">
+					<ul class="nav">
+						<li class="">
+							<h2 class="hvr-bounce-to-right"><a href="/homepage"><i>&#xe600;</i>Home Page</a></h2>
+						</li>
+						<li class="nav-on">
+							<h2 class="hvr-bounce-to-right"><a href="/community"><i>&#xe602;</i>Community</a></h2>
+							<ul class="nav-child-list">
+								<li class="hvr-bounce-to-right1"><a href="/community"></a><i></i>Friends</li>
+								<li class="hvr-bounce-to-right1 child-list-on"><a href="/mp"><i></i>Most Popular</a></li>
+							</ul>
+						</li>
+					</ul>
+					<a class="draw-btn hvr-grow-shadow" id="drawBtn" href="/painting">Draw now</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 顶部 -->
+	<div class="header clearfix">
+		<div class="logo"><a href="/" class="hvr-bob"><img src="statics/images/logo.png" alt="" width="115" height="44"></a></div>
+		<div class="sl-box clearfix">
+			<div class="sign-in sign-box">
+				<i class="sign-in-i"></i>Sign in
+			</div>
+			<div class="sign-up sign-box">
+				<i></i>Sign up
+			</div>
+		</div>
+	</div>
+	<!-- 右侧界面 -->
+	<div class="main-box">
+		<div class="main-box-in">
+			<div class="community">
+				<h1 class="com-title">{{ title }}</h1>
+				{% if article %}
+					{% for art in article %}
+						<div class="art-con">
+							<div class="article-box">
+								<img src="{{ art.url }}">
+							</div>
+							<p>{{ art.des }}</p>
+						</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<script src="statics/js/jquery-1.12.1.js"></script>
+	<script src="statics/js/swiper-3.3.1.min.js"></script>
+	<script src="statics/js/iscroll.js"></script>
+	<script src="statics/js/main.js"></script>
+</body>
+</html>
