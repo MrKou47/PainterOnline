@@ -17,6 +17,8 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-express": "^0.3.5",
+    "images": "^3.0.0",
+    "request-json": "^0.6.1",
     "swig": "^1.4.2"
   }
 }

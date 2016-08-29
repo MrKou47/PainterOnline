@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<!-- <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"> -->
 	<title>PainterOnline</title>
 	<link rel="stylesheet" type="text/css" href="statics/css/main.css">
 	<link rel="stylesheet" href="statics/css/animate.css">
@@ -107,6 +108,12 @@
 		#myCanvas2 {
 			display: none;
 		}
+		#delete {
+			cursor: pointer;
+		}
+		#save {
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
@@ -209,12 +216,14 @@
 						<div id="circle" class="tools-circle tool-box">
 							<h2 class="hvr-bounce-to-right"><i>&#xe608;</i>Circle</h2>
 							<!-- 设置大小 -->
-							<div class="settings-size">
-								<h3><i></i>Size</h3>
-								<div class="scale_panel">
-									<div class="scale" id="bar6">
-										<div></div>
-										<a id="btn6" data-size='10'></a>
+							<div class="tool-setting">
+								<div class="settings-size">
+									<h3><i></i>Size</h3>
+									<div class="scale_panel">
+										<div class="scale" id="bar6">
+											<div></div>
+											<a id="btn6" data-size='10'></a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -238,7 +247,7 @@
 						<div class="edit-list">
 							<!-- <div><i>&#xe607;</i>Revoked</div> -->
 							<div id="delete"><i>&#xe603;</i>Deleted</div>
-							<a class="save" id="save" download="YourFileName.jpg"><i>&#xe605;</i>Save</a>
+							<a class="save" id="save" href="###"><i>&#xe605;</i>Save</a>
 						</div>
 					</div>
 				</div>
@@ -264,6 +273,7 @@
 		</div>
 	</div>
 	<script src="statics/js/jquery-1.12.1.js"></script>
+	<script src="statics/js/jquery.mobile-1.4.5.js"></script>
 	<script src="/statics/js/spectrum.js"></script>
 	<script src="statics/js/swiper-3.3.1.min.js"></script>
 	<script src="statics/js/iscroll.js"></script>
@@ -272,7 +282,7 @@
 	<script src="statics/js/drawControl.js"></script>
 	<script>
 		$(function() {
-
+			
 		});
 	</script>
 	<!-- <script src="statics/js/draw.js"></script> -->

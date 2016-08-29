@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var swig = require('swig');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var qiniu = require('./routes/qiniu.js');
 
 var app = express();
 
@@ -35,6 +36,9 @@ app.get('/', function (req, res, data) {
 app.get('/painting', function (req, res, data) {
   res.render('painting');
 })
+
+app.post('/img/upload', qiniu.upload);
+
 
 
 // catch 404 and forward to error handler

@@ -6,6 +6,7 @@ var oX,oY;
 var brushSize;
 var brushSize;
 var bMouseDown;
+var imgNum = 0;
 $(function() {
 	var myScroll;
 	var canvas;
@@ -92,7 +93,21 @@ $(function() {
 	});
 
 	$("#save").on('click', function(event) {
+		event.preventDefault();
 		var dt = c.toDataURL('image/png');
+		$.ajax({
+			url: '/img/upload',
+			type: 'post',
+			data: {
+				name: 'pic'+imgNum,
+				imgUrl: dt 
+			},
+			success: function  (data) {
+				alert(data);
+				imgNum+=1;
+			}
+		})
+		
 		$(this).attr('href', dt);
 	});
 
@@ -119,6 +134,7 @@ $(function() {
 			fadeScrollbars: true
 		});
 	}
+
 	function createCanvas(fn) {
 		var wid = $(".main-box").width()-32;
 		var canCon = $('<div class="canvas-container"></div>');
@@ -189,27 +205,51 @@ $(function() {
 
 		ctx.lineJoin = "round" ;
 
-		c.onmousedown = function (event) {
-
+		$('#myCanvas').on('mousedown touchstart', function(event) {
+			event.preventDefault();
+			var t = $(this);
 			ctx.beginPath();
 			var oX = event.offsetX;
 			var oY = event.offsetY;
 			ctx.moveTo(oX,oY);
 			var flag_freeBrush = 1;
-			c.onmousemove = function (event) {
+			t.on('mousemove touchmove', function(event) {
+				event.preventDefault();
 				if(flag_freeBrush){
 					ctx.lineTo(event.offsetX,event.offsetY);
 					ctx.stroke();
-				}		
-			}
-			c.onmouseup = function (event) {
+				}	
+			});
+			t.on('mouseup touchend', function(event) {
+				event.preventDefault();
 				flag_freeBrush = 0;
-			}
+			});
+			t.on('mouseout touchend', function(event) {
+				event.preventDefault();
+				flag_freeBrush = 0;
+			});
+		});
+		// c.onmousedown = function (event) {
 
-			c.onmouseout = function (event) {
-				flag_freeBrush = 0;
-			}
-		}     	
+		// 	ctx.beginPath();
+		// 	var oX = event.offsetX;
+		// 	var oY = event.offsetY;
+		// 	ctx.moveTo(oX,oY);
+		// 	var flag_freeBrush = 1;
+		// 	c.onmousemove = function (event) {
+		// 		if(flag_freeBrush){
+		// 			ctx.lineTo(event.offsetX,event.offsetY);
+		// 			ctx.stroke();
+		// 		}		
+		// 	}
+		// 	c.onmouseup = function (event) {
+		// 		flag_freeBrush = 0;
+		// 	}
+
+		// 	c.onmouseout = function (event) {
+		// 		flag_freeBrush = 0;
+		// 	}
+		// }     	
 	}
 
 // 绘制矩形
@@ -260,36 +300,37 @@ $(function() {
 		}
 	}
 	//绘制bezier
-	// function bezier () {
-	// 	c.onmousedown = function (event) {
-	// 		oX = event.offsetX;
-	// 		oY = event.offsetY;
-	// 		c2.style.display = "block";
-	// 		bMouseDown = true;
-	// 		var canvasOffset = $(c).offset();
-	// 		var canvasX = Math.floor(event.pageX - canvasOffset.left);
-	// 		var canvasY = Math.floor(event.pageY - canvasOffset.top);
-	// 	    BezierCurveBrush.startCurve(canvasX, canvasY, false, false, false, false, false, false, canvasX, canvasY, 0, 0);
-	// 		c2.onmousemove = function(event) {
-	// 			if (bMouseDown) {
-	// 			    var canvasOffset = $(c).offset();
-	// 			    var canvasX = Math.floor(event.pageX - canvasOffset.left);
-	// 			    var canvasY = Math.floor(event.pageY - canvasOffset.top);
-	// 			    BezierCurveBrush.draw(canvasX, canvasY, false, false, false, false, false, false, canvasX, canvasY, 0, 0);
-	// 			}
-	// 		}
-	// 		c2.onmouseup = function (event) {
-	// 		    bMouseDown = false;
-	// 			ctx.beginPath();
-	// 			rectangle_width  = event.offsetX - oX;
-	// 			rectangle_height = event.offsetY- oY;
-	// 			if(rectangle_height > rectangle_width)
-	// 				rectangle_width = rectangle_height;
-	// 			ctx.strokeRect(oX,oY,rectangle_width,rectangle_width);
-	// 			c2.style.display = "none";
-	// 		}
-	// 	}
-	// }
+	/*function bezier () {
+		c.onmousedown = function (event) {
+			oX = event.offsetX;
+			oY = event.offsetY;
+			c2.style.display = "block";
+			bMouseDown = true;
+			var canvasOffset = $(c).offset();
+			var canvasX = Math.floor(event.pageX - canvasOffset.left);
+			var canvasY = Math.floor(event.pageY - canvasOffset.top);
+		    BezierCurveBrush.startCurve(canvasX, canvasY, false, false, false, false, false, false, canvasX, canvasY, 0, 0);
+			c2.onmousemove = function(event) {
+				if (bMouseDown) {
+				    var canvasOffset = $(c).offset();
+				    var canvasX = Math.floor(event.pageX - canvasOffset.left);
+				    var canvasY = Math.floor(event.pageY - canvasOffset.top);
+				    BezierCurveBrush.draw(canvasX, canvasY, false, false, false, false, false, false, canvasX, canvasY, 0, 0);
+				}
+			}
+			c2.onmouseup = function (event) {
+			    bMouseDown = false;
+				ctx.beginPath();
+				rectangle_width  = event.offsetX - oX;
+				rectangle_height = event.offsetY- oY;
+				if(rectangle_height > rectangle_width)
+					rectangle_width = rectangle_height;
+				ctx.strokeRect(oX,oY,rectangle_width,rectangle_width);
+				c2.style.display = "none";
+			}
+		}
+	}
+	*/
 	// 直线
 	function line() {
 		var oX,oY       = 0;//起始坐标
@@ -363,7 +404,7 @@ $(function() {
 	// 下载
 
 	$("#colorpicker").spectrum({
-	    color: "#f00",
+	    color: "#000",
 	    hide: function(color) {
 	    	var color = color.toHexString();
 	    	ctx.fillStyle = color;
